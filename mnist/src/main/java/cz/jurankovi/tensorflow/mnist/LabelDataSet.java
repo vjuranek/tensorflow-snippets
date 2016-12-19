@@ -18,6 +18,14 @@ public class LabelDataSet extends DataSet {
 	public byte[] getLabels() {
 		return labels;
 	}
+	
+	public int[][] asOneHot(int numClasses) {
+		int[][] oneHot = new int[numClasses][labels.length];
+		for (int i = 0; i < labels.length; i++) {
+			oneHot[labels[i]][i] = 1;
+		}
+		return oneHot;
+	}
 
 	public void print(int n) {
 		System.out.println(String.format("First %d labels: ", n));

@@ -12,11 +12,11 @@ import javax.imageio.ImageIO;
 
 public class Util {
 
-	public static final int[] BAND_MASK = { 0xFF0000, 0xFF00, 0xFF, 0xFF000000 };
+	public static final int[] BAND_MASKS = { 0xFF0000, 0xFF00, 0xFF, 0xFF000000 };
 
 	public static void saveAsJPG(int width, int height, int[] pixels, String path) throws IOException {
 		DataBufferInt buffer = new DataBufferInt(pixels, pixels.length);
-		WritableRaster raster = Raster.createPackedRaster(buffer, width, height, width, BAND_MASK, null);
+		WritableRaster raster = Raster.createPackedRaster(buffer, width, height, width, BAND_MASKS, null);
 		ColorModel cm = ColorModel.getRGBdefault();
 		BufferedImage image = new BufferedImage(cm, raster, cm.isAlphaPremultiplied(), null);
 		ImageIO.write(image, "JPG", new File(path));
