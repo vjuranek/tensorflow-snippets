@@ -20,9 +20,9 @@ public class LabelDataSet extends DataSet {
 	}
 	
 	public int[][] asOneHot(int numClasses) {
-		int[][] oneHot = new int[numClasses][labels.length];
+		int[][] oneHot = new int[labels.length][numClasses];
 		for (int i = 0; i < labels.length; i++) {
-			oneHot[labels[i]][i] = 1;
+			oneHot[i][labels[i]] = 1;
 		}
 		return oneHot;
 	}

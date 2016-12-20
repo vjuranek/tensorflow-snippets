@@ -8,8 +8,9 @@ public class Mnist {
 		labels.print(100);
 		images.print(5);
 
+		int[][] imgs = images.getRawImages().get2d();
 		for (int i = 0; i < 100; i++) {
-			Util.saveAsJPG(28, 28, images.pixelsOf(i), String.format("/tmp/mnist/jpg/%03d.jpg", i));
+			Util.saveAsJPG(28, 28, imgs[i], String.format("/tmp/mnist/jpg/%03d.jpg", i));
 		}
 	}
 
