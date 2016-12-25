@@ -1,0 +1,1 @@
+`java -Djava.library.path=/usr/local/lib/tensorflow/r0.11 -jar target/mnist-0.0.1-SNAPSHOT.jar`
