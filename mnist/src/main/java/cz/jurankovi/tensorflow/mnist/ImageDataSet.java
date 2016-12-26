@@ -85,6 +85,10 @@ public class ImageDataSet extends DataSet {
 			return images;
 		}
 		
+		public int getImgPixels() {
+		    return rowCnt * colCnt;
+		}
+		
 		public float[] getImagesAsFloat() {
 			float[] asFloat = new float[images.length];
 			for (int i = 0; i < images.length; i++) {

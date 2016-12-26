@@ -1,12 +1,16 @@
 package cz.jurankovi.tensorflow.mnist;
 
 public class Mnist {
+    
+    public static final int IMG_SIZE = 28;
+    public static final int IMG_PIXELS = IMG_SIZE * IMG_SIZE;
+    public static final int NUM_CLASSES = 10;
 
     public static void main(String[] args) throws Exception {
-        LabelDataSet labels = new LabelDataSet("/tmp/mnist/data/train-labels-idx1-ubyte.gz", 10);
+        LabelDataSet labels = new LabelDataSet("/tmp/mnist/data/train-labels-idx1-ubyte.gz", NUM_CLASSES);
         ImageDataSet images = new ImageDataSet("/tmp/mnist/data/train-images-idx3-ubyte.gz");
         
-        LabelDataSet labelsTest = new LabelDataSet("/tmp/mnist/data/t10k-labels-idx1-ubyte.gz", 10);
+        LabelDataSet labelsTest = new LabelDataSet("/tmp/mnist/data/t10k-labels-idx1-ubyte.gz", NUM_CLASSES);
         ImageDataSet imagesTest = new ImageDataSet("/tmp/mnist/data/t10k-images-idx3-ubyte.gz");
 
         /*labels.print(10);
@@ -20,7 +24,7 @@ public class Mnist {
 
         
         labelsTest.print(10);
-        SoftMax sm = new SoftMax("/tmp/my-model/softmax.pb", labels.getLabels().asOneHotFlatFloat(),
+        SoftMax sm = new SoftMax("/tmp/my-model/softmax.pb", IMG_PIXELS, NUM_CLASSES, labels.getLabels().asOneHotFlatFloat(),
                 images.getImages().getImagesAsFloat(), labelsTest.getLabels().asOneHotFlatFloat(),
                 imagesTest.getImages().getImagesAsFloat());
         //sm.trainModel();
