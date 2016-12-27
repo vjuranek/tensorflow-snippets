@@ -81,6 +81,22 @@ public class LabelDataSet extends DataSet {
             return numClasses;
         }
         
+        public int[] asFlatInt() {
+            int[] flat = new int[labels.length];
+            for (int i = 0; i < labels.length; i++) {
+                flat[i] = (int)labels[i];
+            }
+            return flat;
+        }
+        
+        public float[] asFlatFloat() {
+            float[] flat = new float[labels.length];
+            for (int i = 0; i < labels.length; i++) {
+                flat[i] = (float)labels[i];
+            }
+            return flat;
+        }
+        
         public int[][] asOneHot() {
             int[][] oneHot = new int[labels.length][numClasses];
             for (int i = 0; i < labels.length; i++) {

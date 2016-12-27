@@ -24,13 +24,22 @@ public class Mnist {
 
         
         labelsTest.print(10);
-        SoftMax sm = new SoftMax("/tmp/my-model/softmax.pb", IMG_PIXELS, NUM_CLASSES, labels.getLabels().asOneHotFlatFloat(),
-                images.getImages().getImagesAsFloat(), labelsTest.getLabels().asOneHotFlatFloat(),
-                imagesTest.getImages().getImagesAsFloat());
+        
+        /*SoftMax sm = new SoftMax("/tmp/my-model/softmax.pb", IMG_PIXELS, NUM_CLASSES, labels.getLabels().asOneHotFlatFloat(),
+                images.getImages().getImagesAsNormFloat(), labelsTest.getLabels().asOneHotFlatFloat(),
+                imagesTest.getImages().getImagesAsNormFloat());
         //sm.trainModel();
         sm.loadCheckpoint("/tmp/my-model/softmax.ckpt");
         sm.testModel();
-        sm.predictImage(10);
+        sm.predictImage(10);*/ 
+        
+        NNTwoHiddenLayers nn2h = new NNTwoHiddenLayers("/tmp/my-model/nn2h.pb", IMG_PIXELS, labels.getLabels().asFlatFloat(),
+                images.getImages().getImagesAsNormFloat(), labelsTest.getLabels().asFlatFloat(),
+                imagesTest.getImages().getImagesAsNormFloat());
+        //nn2h.trainModel();
+        nn2h.loadCheckpoint("/tmp/my-model/nn2h.ckpt");
+        nn2h.testModel();
+        nn2h.predictImage(10);
 
     }
 

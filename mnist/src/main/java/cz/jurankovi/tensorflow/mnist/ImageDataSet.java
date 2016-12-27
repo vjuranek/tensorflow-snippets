@@ -90,6 +90,14 @@ public class ImageDataSet extends DataSet {
 		}
 		
 		public float[] getImagesAsFloat() {
+            float[] asFloat = new float[images.length];
+            for (int i = 0; i < images.length; i++) {
+                asFloat[i] = (float)images[i] < 0 ? ((float)images[i]+ 256) : (float)images[i];
+            }
+            return asFloat;
+        }
+		
+		public float[] getImagesAsNormFloat() {
 			float[] asFloat = new float[images.length];
 			for (int i = 0; i < images.length; i++) {
 				asFloat[i] = (float)images[i] < 0 ? ((float)images[i]+ 256)/255 : (float)images[i]/255;
@@ -126,7 +134,7 @@ public class ImageDataSet extends DataSet {
 		
 		public float[] getBatch(int n) {
 			float[] batch = new float[n * rowCnt * colCnt];
-			System.arraycopy(getImagesAsFloat(), 0, batch, 0, n * rowCnt * colCnt);
+			System.arraycopy(getImagesAsNormFloat(), 0, batch, 0, n * rowCnt * colCnt);
 			return batch;
 		}
 		
